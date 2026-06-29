@@ -1,5 +1,5 @@
 <?php 
-
+require_once 'config/config.php';
 $uri =$_GET['uri'] ?? 'home';
 $uri =str_replace('.php','',$uri);
 $title=$uri;
