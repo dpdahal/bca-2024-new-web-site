@@ -24,22 +24,22 @@ function base_url($url = "")
 // }
 
 
-// function redirect_back()
-// {
-//     header("Location: {$_SERVER['HTTP_REFERER']}");
-//     exit();
-// }
+function redirect_back()
+{
+    header("Location: {$_SERVER['HTTP_REFERER']}");
+    exit();
+}
 
 
-// function message()
-// {
-//     if (isset($_SESSION['success'])) {
-//         echo "<div class='success'>{$_SESSION['success']}</div>";
-//         unset($_SESSION['success']);
-//     }
+function message()
+{
+    if (isset($_SESSION['success'])) {
+        echo "<div class='success'>{$_SESSION['success']}</div>";
+        unset($_SESSION['success']);
+    }
 
-//     if (isset($_SESSION['error'])) {
-//         echo "<div class='error'>{$_SESSION['error']}</div>";
-//         unset($_SESSION['error']);
-//     }
-// }
+    if (isset($_SESSION['error'])) {
+        echo "<div class='error'>{$_SESSION['error']}</div>";
+        unset($_SESSION['error']);
+    }
+}
