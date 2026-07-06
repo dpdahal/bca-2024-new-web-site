@@ -2,6 +2,8 @@
 require_once 'config/config.php';
 require_once 'config/database.php';
 
+$db= Database::Instance();
+
 
 $errors=[
     'email'=>'',
@@ -27,14 +29,26 @@ if(!empty($_POST)){
 
     if(!array_filter($errors)){
         $dInstance = Database::Instance();
-        $data = [
-            
-            'email' => $_POST['email'],
-            'password' => md5($_POST['password'])
-        ];
-        
-    }
+        $email=$_POST['email'];
+        $password=md5($_POST['password']);
 
+    $findData = $db->CustomQuery("SELECT * FROM users WHERE email='$email' AND password ='$password'");
+    if (count((array)$findData) === 0) {
+            $_SESSION['error'] = 'Invalid email or password.';
+            redirect_back();
+    }else{
+        $users =$findData[0];
+        $_SESSION['user'] = [
+            'id' => $users->id,
+            'name' => $users->name,
+            'email' => $users->email,
+            'gender' => $users->gender
+        ];
+        $_SESSION['success'] = 'Login successful! Welcome, ' . $users->name;
+        header('Location: admin/index.php');
+    
+    }
+}
     
 
 }
@@ -220,6 +234,9 @@ if(!empty($_POST)){
                     Log In 
                 </button>
             </form>
+             <a href="register.php">
+                <p class="text-center mt-3">Don't have an account? Register here.</p>
+             </a>
         </div>
     </div>
 </body>

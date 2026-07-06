@@ -2,7 +2,6 @@
 require_once 'config/config.php';
 require_once 'config/database.php';
 
-
 $errors=[
     'name'=>'',
     'email'=>'',
@@ -10,7 +9,6 @@ $errors=[
     'confirm_password'=>'',
     'gender'=>'',
 ];
-
 $old=[
    'name'=>'',
     'email'=>'',
@@ -18,7 +16,6 @@ $old=[
     'confirm_password'=>'',
     'gender'=>'', 
 ];
-
 
 if(!empty($_POST)){
    foreach($_POST as $key=>$value){
@@ -29,13 +26,32 @@ if(!empty($_POST)){
         }
     }
 
+    $nameRegex = '/^[a-zA-Z\s]+$/';
+    if(!empty($_POST['name']) && !preg_match($nameRegex, $_POST['name'])){
+        $errors['name'] = 'Name can only contain letters and spaces.';
+    }
+
+    $email = $_POST['email'] ?? '';
+    if(!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $errors['email'] = 'Invalid email format.';
+    }
+
+    $password = $_POST['password'] ?? '';
+    $confirmPassword = $_POST['confirm_password'] ?? '';
+    if(!empty($password) && !empty($confirmPassword) && $password !==$confirmPassword){
+        $errors['confirm_password'] = 'Passwords do not match.';
+    }
+
+
     if(!array_filter($errors)){
         $dInstance = Database::Instance();
         $data = [
             'name' => $_POST['name'],
             'email' => $_POST['email'],
             'gender' => $_POST['gender'],
-            'password' => md5($_POST['password'])
+            'password' => md5($_POST['password']),
+            'created_at'=>date('Y-m-d H:i:s'),
+            'updated_at'=>date('Y-m-d H:i:s')
         ];
         $response=$dInstance->Insert('users', $data);
         if($response){
@@ -217,7 +233,7 @@ if(!empty($_POST)){
                             <?php echo $errors['email'] ?? ''; ?>
                         </span>
                     </label>
-                    <input type="email" class="form-control" id="email" name="email"
+                    <input type="text" class="form-control" id="email" name="email"
                            value="<?php echo $old['email'] ?? ''; ?>" placeholder="Enter your email">
                 </div>
 

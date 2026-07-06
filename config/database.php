@@ -31,11 +31,7 @@ class Database
 
     }
 
-    /**
-     * @return Database|null
-     * Instance
-     * Database connection check
-     */
+   
 
     public static function Instance()
     {
@@ -45,12 +41,6 @@ class Database
 
         return self::$_instance;
     }
-
-    /**
-     * @param string $tableName
-     * @param array $data
-     * @return bool
-     */
 
     public function Insert($tableName, $data = array())
     {
@@ -69,9 +59,7 @@ class Database
         }
 
         $query = "INSERT INTO `$tableName` ($columns)VALUES ($setKey)";
-        /**
-         * prepare query
-         */
+    
 
         $prepareStatement = $this->_connection->prepare($query);
         try {
@@ -87,21 +75,13 @@ class Database
 
     }
 
-    /**
-     * @param string $tableName
-     * @param array $data
-     * @param string $criteria
-     * @param array $bindValue
-     * @return mixed
-     */
+
 
     public function Update($tableName = '', $data = array(), $criteria = '', $bindValue = array())
     {
         if (empty($tableName) || empty($tableName) || empty($criteria) ||
             empty($bindValue)) throw new PDOException("Criteria not match");
-        /**
-         * merge array
-         */
+    
         $mergeValue = array_merge(array_values($data), $bindValue);
         $setColumns = '';
         $increment = 1;
@@ -126,12 +106,7 @@ class Database
 
     }
 
-    /**
-     * @param string $tableName
-     * @param string $criteria
-     * @param array $bindValue
-     * @return mixed
-     */
+
 
     public function Delete($tableName = '', $criteria = '', $bindValue = array())
     {
@@ -147,11 +122,7 @@ class Database
 
     }
 
-    /**
-     * @param string $tableName
-     * @param array $bindData
-     * @return bool
-     */
+
 
     public function SelectAll($tableName = '', $bindData = array())
     {
@@ -172,14 +143,6 @@ class Database
 
     }
 
-    /**
-     * @param string $tableName
-     * @param string $column
-     * @param string $criteria
-     * @param array $bindValue
-     * @param string $clause
-     * @return bool
-     */
     public function SelectByCriteria($tableName = '', $column = '*', $criteria = '', $bindValue = array(), $clause = '')
     {
 
@@ -213,11 +176,6 @@ class Database
 
     }
 
-    /**
-     * @param string $query
-     * @return bool
-     */
-
     public function CustomQuery($query = '')
     {
         if (empty($query)) throw new PDOException('Query field is required');
@@ -236,14 +194,6 @@ class Database
 
 
     }
-
-    /**
-     * @param string $tableName
-     * @param string $column
-     * @param string $criteria
-     * @param array $bindValue
-     * @return bool
-     */
 
     public function Count($tableName = '', $column = '*', $criteria = '', $bindValue = array())
     {
