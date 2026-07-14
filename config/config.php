@@ -8,10 +8,10 @@ function base_url($url = "")
 }
 
 
-// function admin_url($url = "")
-// {
-//     return "http://localhost/bbc/admin/$url";
-// }
+function admin_url($url = "")
+{
+    return "http://localhost/bbc/admin/$url";
+}
 
 // function public_path($path = "")
 // {

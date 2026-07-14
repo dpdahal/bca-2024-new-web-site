@@ -176,6 +176,30 @@ class Database
 
     }
 
+
+    public function getById($tableName = '', $id = 0, $column = '*')
+    {
+        if (empty($tableName)) throw new PDOException('Table name is required');
+        if (empty($id)) throw new PDOException('Id is required');
+
+        $query = "SELECT {$column} FROM {$tableName} WHERE id=?";
+        $prepareStatement = $this->_connection->prepare($query);
+        try {
+            if ($prepareStatement->execute([$id])) {
+                $data= $prepareStatement->fetchAll(PDO::FETCH_CLASS);
+                if($data){
+                    return $data[0];
+                }
+            }
+
+        } catch (PDOException $exception) {
+            die($exception->getMessage());
+        }
+
+        return false;
+
+    }
+
     public function CustomQuery($query = '')
     {
         if (empty($query)) throw new PDOException('Query field is required');

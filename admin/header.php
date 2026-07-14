@@ -15,8 +15,8 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="#" class="logo d-flex align-items-center">
-        <img src="<?=base_url('public/icons/logo.png')?>" alt="logo" width="200px" height="40px">
+      <a href="<?=admin_url()?>" class="logo d-flex align-items-center">
+        <img src="<?=base_url('public/icons/logo.png')?>" alt="logo" width="200px">
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>

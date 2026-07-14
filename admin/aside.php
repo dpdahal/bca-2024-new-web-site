@@ -2,40 +2,19 @@
   <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item">
-        <a href="#" class="nav-link active">
+        <a href="<?=admin_url()?>" class="nav-link active">
           <i class="bi bi-house-door-fill"></i>
           <span>Dashboard</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="<?=admin_url('users')?>" class="nav-link">
           <i class="bi bi-amd"></i>
-          <span>AMD</span>
+          <span>Users List</span>
         </a>
       </li>
 
-      <li class="nav-item">
-        <a href="#" class="nav-link">
-          <i class="bi bi-alexa"></i>
-          <span>Alexa</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a href="#" class="nav-link">
-          <i class="bi bi-amazon"></i>
-          <span>Amazon</span>
-        </a>
-      </li>
-
-      <li class="nav-heading">Settings</li>
-
-      <li class="nav-item">
-        <a href="#" class="nav-link">
-          <i class="bi bi-alipay"></i>
-          <span>Alipay</span>
-        </a>
-      </li>
+  
     </ul>
   </aside> <!-- sidebar ends -->

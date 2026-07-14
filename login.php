@@ -42,7 +42,8 @@ if(!empty($_POST)){
             'id' => $users->id,
             'name' => $users->name,
             'email' => $users->email,
-            'gender' => $users->gender
+            'gender' => $users->gender,
+            'role' => $users->role,
         ];
         $_SESSION['success'] = 'Login successful! Welcome, ' . $users->name;
         header('Location: admin/index.php');
