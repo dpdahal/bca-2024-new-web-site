@@ -1,14 +1,12 @@
 <?php
-print_r($_SESSION['user']);
 $db = Database::Instance();
 $role=$_SESSION['user']['role'];
+ $id=$_SESSION['user']['id'];
 if($role=='admin'){
-    $users = $db->SelectAll('users');
+     $users = $db->CustomQuery("SELECT * FROM users WHERE id!=$id");
 }else{
-    $id=$_SESSION['user']['id'];
     $users = $db->CustomQuery("SELECT * FROM users WHERE id= $id");
 }
-
 
 ?>
 
@@ -18,6 +16,7 @@ if($role=='admin'){
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Users List</h5>
+        <?=message();?>
         <table class="table table-striped table-hover">
           <thead>
             <tr>
