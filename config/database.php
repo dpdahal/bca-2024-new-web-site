@@ -222,7 +222,8 @@ class Database
     public function Count($tableName = '', $column = '*', $criteria = '', $bindValue = array())
     {
         if (empty($tableName)) throw new PDOException('Table name is required');
-        $query = "SELECT COUNT($column) COUNT FROM {$tableName}";
+        $query = "SELECT COUNT($column)  FROM {$tableName}";
+    
         if (!empty($criteria) && !empty($bindValue)) {
             $query .= " WHERE {$criteria}=?";
         }
